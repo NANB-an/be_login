@@ -36,9 +36,8 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 # Expose default port (Render sets $PORT)
 EXPOSE 80
 
-# Use entrypoint to replace Listen port with Render’s $PORT
+# Copy entrypoint and make executable
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-CMD ["apache2-foreground"]
