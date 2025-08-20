@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Events\Login;
-use Illuminate\Auth\Events\Logout;
+// Events are kept for scalability but noted as optional only included for practice
+// use Illuminate\Auth\Events\Registered;
+// use Illuminate\Auth\Events\Login;
+// use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
@@ -33,7 +34,9 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
+        // Event kept for future extensibility (e.g., email verification)
+        // but not strictly necessary for basic registration
+        // event(new Registered($user));
 
         // Auto-login after registration
         $token = $user->createToken('auth_token', ['*'], now()->addMinutes(15))->plainTextToken;
@@ -42,7 +45,9 @@ class AuthController extends Controller
         $user->last_login_at = now();
         $user->save();
 
-        event(new Login('sanctum', $user, false));
+        // Login event kept for potential future logging/analytics
+        // but not required for core functionality
+        // event(new Login('sanctum', $user, false));
 
         $response = response()->json([
             'message' => 'User registered successfully',
@@ -113,7 +118,9 @@ class AuthController extends Controller
             $refreshToken = $user->createToken('refresh_token', ['refresh'], now()->addDays(7))->plainTextToken;
         }
 
-        event(new Login('sanctum', $user, $request->remember_me));
+        // Login event kept for potential future logging/analytics
+        // but not required for core functionality
+        // event(new Login('sanctum', $user, false))
 
         $response = response()->json([
             'user' => $user,
@@ -137,8 +144,9 @@ class AuthController extends Controller
             if ($token) {
                 $token->delete();
             }
-            
-            event(new Logout('sanctum', $request->user()));
+            // Logout event kept for potential future cleanup tasks
+            // but not required for core functionality
+            // event(new Logout('sanctum', $request->user()));
 
             return response()->json(['message' => 'Logged out successfully'])
                 ->withoutCookie('access_token')
