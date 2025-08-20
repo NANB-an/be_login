@@ -27,3 +27,11 @@ Route::post('/refresh', [AuthController::class, 'refreshToken']);
 Route::get('/csrf-cookie', function () {
     return response()->json(['csrf_token' => csrf_token()]);
 });
+
+Route::get('/ping', function () {
+    return response()->json([
+        'message' => 'pong',
+        'status' => 'ok',
+        'timestamp' => now()
+    ]);
+});
