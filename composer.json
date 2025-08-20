@@ -7,8 +7,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "ext-pdo_pgsql": "*",
-        "ext-pgsql": "*",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1"
@@ -72,7 +70,13 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
-        }
+        },
+        "platform": {
+        "php": "8.1",
+        "ext-pdo_pgsql": "8.1",
+        "ext-pgsql": "8.1"
+    }
+        
     },
     "minimum-stability": "stable",
     "prefer-stable": true
