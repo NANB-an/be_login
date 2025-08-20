@@ -30,8 +30,8 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
     && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# Expose port (Render uses $PORT at runtime automatically)
-EXPOSE 10000
+# Expose default Apache port
+EXPOSE 80
 
-# Use Apache but let Render handle the port mapping
+# Start Apache in foreground
 CMD ["apache2-foreground"]
