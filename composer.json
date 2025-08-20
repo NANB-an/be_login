@@ -74,9 +74,8 @@
             "php-http/discovery": true
         },
         "platform": {
-        "php": "8.2",
-        "ext-pdo_pgsql": "8.2",
-        "ext-pgsql": "8.2"
+        "php": "8.2"
+        
     }
         
     },
