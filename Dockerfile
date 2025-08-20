@@ -15,15 +15,15 @@ WORKDIR /var/www/html
 # Copy project files
 COPY . .
 
-# Install Composer (from official Composer image)
+# Install Composer
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
 # Install PHP dependencies (production optimized)
 RUN composer install --no-dev --optimize-autoloader
 
 # Set proper permissions for Laravel
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
 
 # Configure Apache to serve Laravel from /public
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
@@ -33,5 +33,5 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
 # Expose default Apache port
 EXPOSE 80
 
-# Start Apache in foreground
+# Start Apache
 CMD ["apache2-foreground"]
