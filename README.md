@@ -51,4 +51,3 @@ To install and set up the project, follow these steps:
 
 
 
-This project is open-source under the **MIT License**.
