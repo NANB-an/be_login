@@ -1,9 +1,54 @@
 # be_login
 
-A backend authentication system built with Laravel, designed to handle user registration, login, and user management. The main branch is for production-ready code and the dev branch is for local testing and development. It includes user registration with email and password, user login and authentication, password hashing for security, session management, and environment-based configuration via .env.
+A backend authentication system built with Laravel, designed to handle user registration, login, and user management. The **main branch** is for production-ready code and the **dev branch** is for local testing and development. It includes user registration with email and password, user login and authentication, password hashing for security, session management, and environment-based configuration via `.env`.
 
-To install and set up the project, first clone the repository and enter the folder by running `git clone https://github.com/NANB-an/be_login.git && cd be_login`, then install PHP dependencies using `composer install`. Copy the environment file using `cp .env.example .env`. In your `.env` file, set the database connection and credentials. For local testing, use SQLite by setting `DB_CONNECTION=sqlite` and commenting out the other DB_* settings. For production, use PostgreSQL and set `DB_CONNECTION=pgsql` with your `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD`. Set `SANCTUM_STATEFUL_DOMAINS=localhost` for local testing or your frontend domain for production. Example for local SQLite: `DB_CONNECTION=sqlite # DB_HOST=localhost # DB_PORT=5432 # DB_DATABASE=<your-database-name> # DB_USERNAME=<your-username> # DB_PASSWORD=<your-password> SANCTUM_STATEFUL_DOMAINS=localhost`. Example for production PostgreSQL: `DB_CONNECTION=pgsql DB_HOST=<your-production-db-host> DB_PORT=5432 DB_DATABASE=<your-database-name> DB_USERNAME=<your-username> DB_PASSWORD=<your-password> SANCTUM_STATEFUL_DOMAINS=<your-frontend-domain>`.
+To install and set up the project, follow these steps:
 
-Generate the application key using `php artisan key:generate` and run database migrations with `php artisan migrate`. Start the Laravel development server with `php artisan serve`. The backend will be accessible at `http://127.0.0.1:8000`.
+1. **Clone the repository and enter the folder**:  
+   `git clone https://github.com/NANB-an/be_login.git && cd be_login`
 
-The API endpoints include `POST /api/register` to register a new user, `POST /api/login` to login, `POST /api/logout` to logout, `GET /api/users` to list users, `GET /api/users/{id}` to view user details, `PUT /api/users/{id}` to update user details, and `DELETE /api/users/{id}` to delete a user. Run PHPUnit tests using `php artisan test`. This project is open-source under the MIT License.
+2. **Install PHP dependencies**:  
+   `composer install`
+
+3. **Copy the environment file**:  
+   `cp .env.example .env`
+
+4. **Configure your `.env` file**:  
+   - For **local testing**, use SQLite by setting:  
+     `DB_CONNECTION=sqlite`  
+     Comment out the other DB_* settings:  
+     `# DB_HOST=localhost`  
+     `# DB_PORT=5432`  
+     `# DB_DATABASE=<your-database-name>`  
+     `# DB_USERNAME=<your-username>`  
+     `# DB_PASSWORD=<your-password>`  
+     Set `SANCTUM_STATEFUL_DOMAINS=localhost`
+     
+   - For **production**, use PostgreSQL by setting:  
+     `DB_CONNECTION=pgsql`  
+     `DB_HOST=<your-production-db-host>`  
+     `DB_PORT=5432`  
+     `DB_DATABASE=<your-database-name>`  
+     `DB_USERNAME=<your-username>`  
+     `DB_PASSWORD=<your-password>`  
+     Set `SANCTUM_STATEFUL_DOMAINS=<your-frontend-domain>`
+
+5. **Generate the application key**:  
+   `php artisan key:generate`
+
+6. **Run database migrations**:  
+   `php artisan migrate`
+
+7. **Start the Laravel development server**:  
+   `php artisan serve`  
+   The backend will be accessible at `http://127.0.0.1:8000`.
+
+**API Endpoints**:  
+- `POST /api/register` – Register a new user  
+- `POST /api/login` – Login a user  
+- `POST /api/logout` – Logout the authenticated user  
+- `GET /api/users` – List users (protected route)  
+
+
+
+This project is open-source under the **MIT License**.
